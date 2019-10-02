@@ -2,17 +2,17 @@ require("dotenv").config();
 // variables to require keys and files
 var axios = require("axios");
 var keys = require("./keys.js");
-console.log(keys);
+// console.log(keys);
 var fs = require("fs");
 var Spotify = require("node-spotify-api");
 var spotify = new Spotify(keys.spotify);
-console.log(spotify);
+// console.log(spotify);
 // variable to store key for omdb
 var movieKey = keys.movieKey.key;
-console.log(movieKey);
+// console.log(movieKey);
 // variable t0 store key for Bands in Town
 var bandKey = keys.bandKey.key;
-console.log(bandKey);
+// console.log(bandKey);
 // variables for user input
 var liriCommand = process.argv[2];
 // variable for capturing user input
@@ -48,7 +48,7 @@ function movieThis() {
     movieKey;
   // console.log(queryUrl)
   axios.get(queryUrl).then(function(response) {
-    console.log(response);
+    // console.log(response);
     console.log("Title:" + response.data.Title + "\n"); // Title of the movie.
     console.log("Release Year: " + response.data.Year + "\n"); //   Year the movie came out.
     console.log("The IMDB rating is: " + response.data.imdbRating + "\n"); //  IMDB Rating of the movie.
