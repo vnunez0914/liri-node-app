@@ -6,3 +6,10 @@ exports.spotify = {
 
 };
 
+exports.movieKey = {
+    key: process.env.omdbKey
+};
+
+exports.bandKey = {
+    key: process.env.bandKey
+}
