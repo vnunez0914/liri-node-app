@@ -18,7 +18,7 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
 
    * [DotEnv](https://www.npmjs.com/package/dotenv)
    
- 3.Type node liri.js and one of the following commands:
+ 3. Type node liri.js and one of the following commands:
 
    * `concert-this`<band/artist name here>, this will display the following information by searching the bands in town api
      * Name of the venue
@@ -56,10 +56,10 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
  
  # Technology Used
  
-Back end:
 * Javascript
 * node.js
-*Node Package Manager
+* Node Package Manager
+* API
 
 # Issues
 
