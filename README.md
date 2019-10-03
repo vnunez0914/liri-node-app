@@ -48,8 +48,7 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
        * Plot of the movie.
        * Actors in the movie.
     * If the user doesn't type a movie in, the program will output data for the movie 'Mr. Nobody.' 
-  
-  <iframe src="https://giphy.com/embed/gFhe56ZlhXsttu4J1X" width="480" height="324" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/gFhe56ZlhXsttu4J1X">via GIPHY</a></p>   
+    
    * `do-what-it-says`
    LIRI will take the text inside of random.txt and then use it to call one of LIRI's commands.
 
