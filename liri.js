@@ -6,13 +6,14 @@ var keys = require("./keys.js");
 var fs = require("fs");
 var Spotify = require("node-spotify-api");
 var spotify = new Spotify(keys.spotify);
+console.log(spotify);
 // console.log(spotify);
 // variable to store key for omdb
 var movieKey = keys.movieKey.key;
 // console.log(movieKey);
 // variable t0 store key for Bands in Town
 var bandKey = keys.bandKey.key;
-// console.log(bandKey);
+ console.log(bandKey);
 // variables for user input
 var liriCommand = process.argv[2];
 // variable for capturing user input
@@ -40,6 +41,9 @@ switch (liriCommand) {
 
 // function for OMDB, movie-this case
 function movieThis() {
+  if (userInput === ""){
+    userInput = "Mr.Nobody"
+   }
   // variable for user to select movie name and concatinate to url
   var queryUrl =
     "http://www.omdbapi.com/?t=" +
@@ -52,7 +56,7 @@ function movieThis() {
     console.log("Title:" + response.data.Title + "\n"); // Title of the movie.
     console.log("Release Year: " + response.data.Year + "\n"); //   Year the movie came out.
     console.log("The IMDB rating is: " + response.data.imdbRating + "\n"); //  IMDB Rating of the movie.
-    // console.log(response.data.Ratings)//  Rotten Tomatoes Rating of the movie.
+    console.log("Ratings: " + response.data.Ratings[0].Value + "\n")//  Rotten Tomatoes Rating of the movie.
     console.log("This movie was produced in: " + response.data.Country + "\n"); //  Country where the movie was produced.
     console.log("Language: " + response.data.Language + "\n"); //  Language of the movie.
     console.log("Plot: " + response.data.Plot + "\n"); //  Plot of the movie.
@@ -62,16 +66,46 @@ function movieThis() {
 
 
 // function for Spotify, spotify-this-song case
-// function spotifySong() {
-
-// }
+function spotifySong() {
+  spotify.request("https://api.spotify.com/v1/" + userInput + "/7yCPwWs66K8Ba5lFuU2bcx")
+  .then(function(data) {
+    console.log(data); 
+  })
+  .catch(function(err) {
+    console.error('Error occurred: ' + err); 
+  });
+}
 
 // // function for Band in Town, concert-this case
-// function concertThis(){
+ function concertThis(){
 
-// }
+  var queryUrl = "https://rest.bandsintown.com/artists/" + userInput + "/events?app_id=" + bandKey;
+  // console.log(queryUrl)
+  axios.get(queryUrl).then(function(data) {
+    // console.log(data);
+    
+  });
+}
 
 // // function for do-what-it-says case
-// function doWhatItSays(){
+function doWhatItSays(){
 
-// }
+// The code will store the contents of the reading inside the variable "data"
+fs.readFile("random.txt", "utf8", function(error, data) {
+
+  // If the code experiences any errors it will log the error to the console.
+  if (error) {
+    return console.log(error);
+  }
+
+  // We will then print the contents of data
+  console.log(data);
+
+  // Then split it by commas (to make it more readable)
+  var dataArr = data.split(",");
+
+  console.log(dataArr);
+
+});
+
+}
