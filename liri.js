@@ -5,6 +5,7 @@ var keys = require("./keys.js");
 // console.log(keys);
 var fs = require("fs");
 var Spotify = require("node-spotify-api");
+var moment = require("moment");
 var spotify = new Spotify(keys.spotify);
 // console.log(spotify);
 // console.log(spotify);
@@ -41,9 +42,9 @@ switch (liriCommand) {
 
 // function for OMDB, movie-this case
 function movieThis() {
-  if (userInput === ""){
-    userInput = "Mr.Nobody"
-   }
+  if (userInput === "") {
+    userInput = "Mr.Nobody";
+  }
   // variable for user to select movie name and concatinate to url
   var queryUrl =
     "http://www.omdbapi.com/?t=" +
@@ -56,51 +57,62 @@ function movieThis() {
     console.log("\n" + "Title:" + response.data.Title + "\n"); // Title of the movie.
     console.log("Release Year: " + response.data.Year + "\n"); //   Year the movie came out.
     console.log("The IMDB rating is: " + response.data.imdbRating + "\n"); //  IMDB Rating of the movie.
-    console.log("Ratings: " + response.data.Ratings[0].Value + "\n")//  Rotten Tomatoes Rating of the movie.
+    console.log("Ratings: " + response.data.Ratings[0].Value + "\n"); //  Rotten Tomatoes Rating of the movie.
     console.log("This movie was produced in: " + response.data.Country + "\n"); //  Country where the movie was produced.
     console.log("Language: " + response.data.Language + "\n"); //  Language of the movie.
     console.log("Plot: " + response.data.Plot + "\n"); //  Plot of the movie.
-    console.log("Actors: " + response.data.Actors); // Actors in the movie.
+    console.log("Actors: " + response.data.Actors + "\n"); // Actors in the movie.
   });
 }
-
 
 // function for Spotify, spotify-this-song case
 function spotifySong() {
   //If user has not specified a song , default to "Bye Bye Bye" by NSYNC
-  if (userInput=== "") {
+  if (userInput === "") {
     userInput = "Bye Bye Bye";
   }
 
-  spotify.search({ type: 'track', query: userInput }, function(err, data) {
+  spotify.search({ type: "track", query: userInput }, function(err, data) {
     if (err) {
-      return console.log('Error occurred: ' + err);
+      return console.log("Error occurred: " + err);
+    } else {
+      console.log(
+        "\n" + "Artist: " + data.tracks.items[0].artists[0].name + "\n"
+      ); //Artist(s)
+      console.log("Song name: " + data.tracks.items[0].name + "\n"); // The song's name
+      console.log(
+        "Preview link: " + data.tracks.items[0].external_urls.spotify + "\n"
+      ); // A preview link of the song from Spotify
+      console.log("Album: " + data.tracks.items[0].album.name + "\n"); // The album that the song is from
     }
- 
-    else{
-      console.log("\n" + "Artist: " + data.tracks.items[0].artists[0].name + "\n") //Artist(s)
-      console.log("Song name: " + data.tracks.items[0].name + "\n")// The song's name
-      console.log("Preview link: " + data.tracks.items[0].external_urls.spotify + "\n")// A preview link of the song from Spotify
-      console.log("Album: " + data.tracks.items[0].album.name+ "\n")// The album that the song is from
- 
-    }
-   
-    // console.log(data.tracks.items[0]); 
+
+    // console.log(data.tracks.items[0]);
   });
-  
 }
 
 // // function for Band in Town, concert-this case
-function concertThis(){
-  
-  //   var queryUrl = "https://rest.bandsintown.com/artists/" + userInput + "/events?app_id=" + bandKey;
-  //   // console.log(queryUrl)
-  //   axios.get(queryUrl).then(function(data) {
-    //     console.log(data.data);
-    
-    //   });
-    // }
+function concertThis() {
+  if (userInput === "") {
+    console.log("\n Type Artist/Band name to display Concert Information.\n");
+  } else {
+    var queryUrl =
+      "https://rest.bandsintown.com/artists/" +
+      userInput +
+      "/events?app_id=" +
+      bandKey;
+    // console.log(queryUrl)
+    axios.get(queryUrl).then(function(data) {
+      // console.log(data.data[0]);
+
+      console.log("\n" + "Venue: " + data.data[0].venue.name + "\n"); //Name of the venue
+      console.log("Venue location: " + data.data[0].venue.city + "\n"); //Venue location
+
+      var date = data.data[0].datetime;nod
+      date = moment(date).format("MMMM Do YYYY, h:mm:ss a");
+      console.log("Event Date: " + date + "\n"); //Date of the Event (use moment to format this as "MM/DD/YYYY")
+    });
   }
+}
 
 // // function for do-what-it-says case
 // function doWhatItSays(){
@@ -122,4 +134,3 @@ function concertThis(){
 //   console.log(dataArr);
 
 // });
-

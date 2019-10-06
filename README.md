@@ -26,6 +26,10 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
      * Venue location
 
      * Date of the Event
+    
+    * If no user info is provided then the program will let user know to type a name of band/artist.
+
+      ![](https://media.giphy.com/media/UUmR6GYTYbOfSitb92/giphy.gif)
 
    * `spotify-this-song`<song name here>, this will search Spotify and display the following information
       * Artist(s)
