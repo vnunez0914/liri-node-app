@@ -36,9 +36,9 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
 
      * The album that the song is from
 
-   * If no song is provided then your program will default to "The Sign" by Ace of Base.
+   * If no song is provided then your program will default to "Bye Bye Bye" by NSYNC.
 
-        ![](https://media.giphy.com/media/H1YTgbNiQVmvtlUhhQ/giphy.gif)
+        ![](https://media.giphy.com/media/H1jzfFxnzGHZGgASCT/giphy.gif)
    
    * `movie-this`<name of movie here>, will search omdb for the title and display the following information:
        * Title of the movie.
