@@ -79,7 +79,7 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
 * Spotify command and do-what-it-says is still in development. Will update and remove from README when fixed
 
 
-# Future Developements:
+# Future Developments:
 * Addng a prompt package from npm to make it more user friendly
 
 
