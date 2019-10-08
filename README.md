@@ -62,7 +62,9 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
    * `do-what-it-says`
    LIRI will take the text inside of random.txt and then use it to call one of LIRI's commands.
 
-     * It will run `spotify-this-song` for "I Want it That Way," as follows the text in `random.txt`. 
+     * It will run `spotify-this-song` for "I Want it That Way," as follows the text in `random.txt`.
+
+    ![](https://media.giphy.com/media/Zdm4HeoR5So37ZoZn8/giphy.gif) 
  
  # Technology Used
  

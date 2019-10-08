@@ -52,7 +52,7 @@ function movieThis() {
     "&y=&plot=short&apikey=" +
     movieKey;
   // console.log(queryUrl)
-  axios.get(queryUrl).then(function(response) {
+  axios.get(queryUrl).then(function (response) {
     // console.log(response);
     console.log("\n" + "Title:" + response.data.Title + "\n"); // Title of the movie.
     console.log("Release Year: " + response.data.Year + "\n"); //   Year the movie came out.
@@ -72,7 +72,7 @@ function spotifySong() {
     userInput = "Bye Bye Bye";
   }
 
-  spotify.search({ type: "track", query: userInput }, function(err, data) {
+  spotify.search({ type: "track", query: userInput }, function (err, data) {
     if (err) {
       return console.log("Error occurred: " + err);
     } else {
@@ -101,36 +101,49 @@ function concertThis() {
       "/events?app_id=" +
       bandKey;
     // console.log(queryUrl)
-    axios.get(queryUrl).then(function(data) {
+    axios.get(queryUrl).then(function (data) {
       // console.log(data.data[0]);
 
       console.log("\n" + "Venue: " + data.data[0].venue.name + "\n"); //Name of the venue
       console.log("Venue location: " + data.data[0].venue.city + "\n"); //Venue location
 
-      var date = data.data[0].datetime;nod
+      var date = data.data[0].datetime;
+      nod;
       date = moment(date).format("MMMM Do YYYY, h:mm:ss a");
       console.log("Event Date: " + date + "\n"); //Date of the Event (use moment to format this as "MM/DD/YYYY")
     });
   }
 }
 
-// // function for do-what-it-says case
-// function doWhatItSays(){
+// function for do-what-it-says case
+function doWhatItSays() {
+  // The code will store the contents of the reading inside the variable "data"
+  fs.readFile("random.txt", "utf8", function (error, data) {
 
-// // The code will store the contents of the reading inside the variable "data"
-// fs.readFile("random.txt", "utf8", function(error, data) {
+    // If the code experiences any errors it will log the error to the console.
+    if (error) {
+      return console.log(error);
+    }
 
-//   // If the code experiences any errors it will log the error to the console.
-//   if (error) {
-//     return console.log(error);
-//   }
+    //print the contents of data
+    // console.log(data);
 
-//   // We will then print the contents of data
-//   console.log(data);
+    // splits data from random.txt at comma
+    var dataArr = data.split(",");
 
-//   // Then split it by commas (to make it more readable)
-//   var dataArr = data.split(",");
+    // console.log(dataArr[1]);
 
-//   console.log(dataArr);
+    spotify.search({ type: "track", query: dataArr[1] }, function (err, data) {
+      if (err) {
+        return console.log("Error occurred: " + err);
+      } else {
+        console.log("\n" + "Artist: " + data.tracks.items[0].artists[0].name + "\n"); //Artist(s)
+        console.log("Song name: " + data.tracks.items[0].name + "\n"); // The song's name
+        console.log("Preview link: " + data.tracks.items[0].external_urls.spotify + "\n"); // A preview link of the song from Spotify
+        console.log("Album: " + data.tracks.items[0].album.name + "\n"); // The album that the song is from
+      }
 
-// });
+      // console.log(data.tracks.items[0]);
+    });
+  });
+}
